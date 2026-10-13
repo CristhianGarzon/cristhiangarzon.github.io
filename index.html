@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cristhian Garzón — Software Engineer & Founder</title>
+    <meta
+      name="description"
+      content="Cristhian Garzón — full-stack software engineer and founder of RUVEO, based in Brisbane, Australia. Go, React, TypeScript, cloud and DevOps."
+    />
+    <meta property="og:title" content="Cristhian Garzón — Software Engineer & Founder" />
+    <meta property="og:description" content="Full-stack engineer and founder of RUVEO, based in Brisbane." />
+    <meta property="og:image" content="https://cristhiangarzon.github.io/portfolio/profile.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Page background before the styled-components GlobalStyle loads (avoids a white flash). */
+      html { background: #0b0d10; }
+      html[data-theme='light'] { background: #eef2f6; }
+    </style>
+    <script>
+      // Apply saved / system theme and language before first paint to avoid a flash.
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.dataset.theme = t;
+        var l = null;
+        try { l = localStorage.getItem('lang'); } catch (e) {}
+        if (l !== 'en' && l !== 'es') {
+          l = (navigator.language || '').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
+        }
+        document.documentElement.lang = l;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
