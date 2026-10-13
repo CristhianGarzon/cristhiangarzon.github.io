@@ -1,13 +1,13 @@
 # Cristhian Garzón — Portfolio
 
 Personal portfolio built with React, TypeScript and Vite. Live at
-**https://cristhiangarzon.github.io/portfolio**
+**https://cristhiangarzon.github.io**
 
 ## Run locally
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173/portfolio/
+npm run dev        # http://localhost:5173/
 npm run build      # production build into dist/
 ```
 
@@ -32,3 +32,17 @@ needed). The **first** message triggers an activation email to
 delivered from then on. Optionally, replace the email in
 `src/components/Contact.tsx` with the random alias FormSubmit gives you so the
 address isn't exposed in the page source.
+
+## SEO & AI agents
+
+`seo/plugin.ts` runs at build time and generates everything from `src/data.ts`:
+
+- `<title>`, description, canonical + `hreflang` (English `/`, Spanish `/?lang=es`),
+  Open Graph / X cards (image: `public/og-image.jpg`, 1200×630) and schema.org JSON-LD.
+- The full page content as plain HTML inside `#root`, so crawlers and AI agents that don't
+  run JavaScript can read it. React replaces it when the app loads.
+- `robots.txt`, `sitemap.xml`, `llms.txt` and `llms-full.txt` in `dist/`.
+
+After deploying, submit `https://cristhiangarzon.github.io/sitemap.xml` in
+[Google Search Console](https://search.google.com/search-console) and
+[Bing Webmaster Tools](https://www.bing.com/webmasters).

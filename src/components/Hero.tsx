@@ -67,7 +67,17 @@ export function Hero() {
         </IntroCard>
 
         <PhotoCard className="reveal">
-          <img src={profile.photo} alt={h.photoAlt} width={234} height={256} />
+          <picture>
+            <source srcSet={`${import.meta.env.BASE_URL}${profile.photoWebp}`} type="image/webp" />
+            <img
+              src={`${import.meta.env.BASE_URL}${profile.photo}`}
+              alt={h.photoAlt}
+              width={profile.photoSize.width}
+              height={profile.photoSize.height}
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
           <PhotoBadge>
             <Pulse /> {h.open}
           </PhotoBadge>
@@ -226,7 +236,7 @@ const PhotoCard = styled(Card)`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 30%;
+    object-position: 50% 38%;
     transition: transform 0.8s ${ease};
   }
 

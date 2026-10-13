@@ -3,14 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cristhian Garzón — Software Engineer & Founder</title>
-    <meta
-      name="description"
-      content="Cristhian Garzón — full-stack software engineer and founder of RUVEO, based in Brisbane, Australia. Go, React, TypeScript, cloud and DevOps."
-    />
-    <meta property="og:title" content="Cristhian Garzón — Software Engineer & Founder" />
-    <meta property="og:description" content="Full-stack engineer and founder of RUVEO, based in Brisbane." />
-    <meta property="og:image" content="https://cristhiangarzon.github.io/portfolio/profile.jpg" />
+    <!-- Title, description, social cards, canonical/hreflang links and JSON-LD structured data
+         are generated from src/data.ts at build time by seo/plugin.ts. -->
+    <!--seo:head-->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,27 +17,46 @@
       /* Page background before the styled-components GlobalStyle loads (avoids a white flash). */
       html { background: #0b0d10; }
       html[data-theme='light'] { background: #eef2f6; }
+      /* The pre-rendered content inside #root is for crawlers and no-JS visitors; hide it while the app boots. */
+      html.js [data-prerendered] { visibility: hidden; }
+      [data-prerendered] { max-width: 760px; margin: 0 auto; padding: 32px 16px; color: #eef1f5; font: 16px/1.6 system-ui, sans-serif; }
+      html[data-theme='light'] [data-prerendered] { color: #11161d; }
+      [data-prerendered] a { color: #3b8eea; }
+      [data-prerendered] img { width: 220px; height: auto; border-radius: 16px; }
+      [data-prerendered] h1 { line-height: 1.15; }
     </style>
     <script>
       // Apply saved / system theme and language before first paint to avoid a flash.
       (function () {
+        var root = document.documentElement;
+        root.classList.add('js');
+        // If the app fails to start, show the pre-rendered content instead of a blank page.
+        setTimeout(function () {
+          if (document.querySelector('[data-prerendered]')) root.classList.remove('js');
+        }, 4000);
+
         var t = null;
         try { t = localStorage.getItem('theme'); } catch (e) {}
         if (t !== 'light' && t !== 'dark') {
           t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
         }
-        document.documentElement.dataset.theme = t;
+        root.dataset.theme = t;
+
+        // Language: ?lang= in the address wins, then the saved choice, then the browser language.
         var l = null;
-        try { l = localStorage.getItem('lang'); } catch (e) {}
+        try { l = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+        if (l !== 'en' && l !== 'es') {
+          try { l = localStorage.getItem('lang'); } catch (e) {}
+        }
         if (l !== 'en' && l !== 'es') {
           l = (navigator.language || '').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
         }
-        document.documentElement.lang = l;
+        root.lang = l;
       })();
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--seo:body--></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

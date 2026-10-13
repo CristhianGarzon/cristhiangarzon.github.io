@@ -11,7 +11,16 @@ export const profile = {
   email: 'cristhianf.garzon@gmail.com',
   linkedin: 'https://www.linkedin.com/in/cristhian-garzon',
   github: 'https://github.com/CristhianGarzon',
-  photo: `${import.meta.env.BASE_URL}profile.jpg`,
+  /** Public address of the site — used for SEO tags, sitemap and llms.txt. Keep the trailing slash. */
+  siteUrl: 'https://cristhiangarzon.github.io/',
+  /** Files in /public. `photo` is the web-sized portrait; `ogImage` is the 1200×630 link-preview image. */
+  photo: 'profile-800.jpg',
+  photoWebp: 'profile-800.webp',
+  photoSize: { width: 800, height: 1067 },
+  ogImage: 'og-image.jpg',
+  city: 'Brisbane',
+  region: 'QLD',
+  country: 'AU',
 };
 
 /** A heading with one word set in italic serif: [before, emphasised, after]. */
@@ -55,6 +64,8 @@ const AI_CODING_ITEMS = ['Claude Code', 'Codex', 'Vercel v0', 'GitHub Copilot', 
 const en = {
   meta: {
     title: 'Cristhian Garzón — Software Engineer & AI Engineer',
+    description:
+      'Cristhian Garzón is a full-stack software and AI engineer in Brisbane, Australia, and founder of RUVEO. 10+ years building with Go, React, TypeScript, cloud, DevOps, Web3 and LLM-powered products.',
   },
   ui: {
     nav: { about: 'About', experience: 'Experience', projects: 'Projects', skills: 'Skills', cta: 'Let’s talk', backToTop: 'Back to top' },
@@ -314,6 +325,8 @@ export type Content = typeof en;
 const es: Content = {
   meta: {
     title: 'Cristhian Garzón — Ingeniero de Software y de Inteligencia Artificial',
+    description:
+      'Cristhian Garzón es ingeniero de software full-stack y de IA en Brisbane, Australia, y fundador de RUVEO. Más de 10 años construyendo con Go, React, TypeScript, nube, DevOps, Web3 y productos con LLM.',
   },
   ui: {
     nav: { about: 'Sobre mí', experience: 'Experiencia', projects: 'Proyectos', skills: 'Habilidades', cta: 'Hablemos', backToTop: 'Volver arriba' },

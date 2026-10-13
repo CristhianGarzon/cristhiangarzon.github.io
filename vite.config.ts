@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { seo } from './seo/plugin';
 
-// Served from https://cristhiangarzon.github.io/portfolio/
+// Served from https://cristhiangarzon.github.io/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), seo()],
   base: '/',
 });
