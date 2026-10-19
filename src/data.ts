@@ -53,9 +53,10 @@ const AI_ENGINEERING_ITEMS = [
   'Embeddings',
   'pgvector',
   'Vercel AI SDK',
-  'LangChain',
 ];
-const AI_CODING_ITEMS = ['Claude Code', 'Codex', 'Vercel v0', 'GitHub Copilot', 'OpenAI Codex', 'Gemini CLI', 'Windsurf', 'v0', 'ChatGPT', 'Claude'];
+/** AI skills not yet used in a shipped product (planned for RUVEO). Shown on the site, left off the printed CV. */
+export const PLANNED_AI_ITEMS = ['RAG', 'Embeddings', 'pgvector', 'LangChain'];
+const AI_CODING_ITEMS = ['Claude Code', 'Codex', 'Vercel v0', 'GitHub Copilot', 'OpenAI Codex', 'v0', 'ChatGPT', 'Claude'];
 
 /* ------------------------------------------------------------------ */
 /* English                                                             */
@@ -82,6 +83,21 @@ const en = {
       copyEmail: 'Copy email address',
       copied: 'Copied',
       nowBuilding: 'Now building',
+      downloadPdf: 'Download CV',
+      downloadPdfHint: 'Opens the print dialog — choose “Save as PDF”. Colours follow the current theme.',
+    },
+    resume: {
+      fileName: 'Cristhian-Garzon-CV',
+      profile: 'Profile',
+      experience: 'Experience',
+      earlier: 'Earlier roles',
+      projects: 'Selected projects',
+      skills: 'Skills',
+      education: 'Education',
+      certifications: 'Certifications',
+      languages: 'Languages',
+      contact: 'Contact',
+      portfolio: 'Portfolio',
     },
     sections: {
       about: ['A bit ', 'about', ' me'] as Title,
@@ -343,6 +359,21 @@ const es: Content = {
       copyEmail: 'Copiar correo electrónico',
       copied: 'Copiado',
       nowBuilding: 'Construyendo ahora',
+      downloadPdf: 'Descargar CV',
+      downloadPdfHint: 'Abre el diálogo de impresión — elige “Guardar como PDF”. Los colores siguen el tema actual.',
+    },
+    resume: {
+      fileName: 'Cristhian-Garzon-CV',
+      profile: 'Perfil',
+      experience: 'Experiencia',
+      earlier: 'Roles anteriores',
+      projects: 'Proyectos destacados',
+      skills: 'Habilidades',
+      education: 'Formación',
+      certifications: 'Certificaciones',
+      languages: 'Idiomas',
+      contact: 'Contacto',
+      portfolio: 'Portafolio',
     },
     sections: {
       about: ['Un poco ', 'sobre', ' mí'],

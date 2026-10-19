@@ -4,6 +4,7 @@ import { profile } from '../data';
 import { useLang } from '../i18n';
 import { color, ease, font, media, radius } from '../styles/theme';
 import {
+  Button,
   ButtonLink,
   Card,
   CardLink,
@@ -18,7 +19,7 @@ import {
   SrOnly,
   glow,
 } from '../styles/ui';
-import { ArrowIcon, CheckIcon, CopyIcon, GitHubIcon, LinkedInIcon, MailIcon, PinIcon } from './Icons';
+import { ArrowIcon, CheckIcon, CopyIcon, DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon, PinIcon } from './Icons';
 
 function CopyEmail({ label, copiedLabel }: { label: string; copiedLabel: string }) {
   const [copied, setCopied] = useState(false);
@@ -37,6 +38,18 @@ function CopyEmail({ label, copiedLabel }: { label: string; copiedLabel: string 
       <SrOnly aria-live="polite">{copied ? copiedLabel : ''}</SrOnly>
     </IconButton>
   );
+}
+
+/** Opens the print dialog with the CV; the document title becomes the suggested PDF file name. */
+function printResume(fileName: string) {
+  const previous = document.title;
+  document.title = fileName;
+  const restore = () => {
+    document.title = previous;
+    window.removeEventListener('afterprint', restore);
+  };
+  window.addEventListener('afterprint', restore);
+  window.print();
 }
 
 export function Hero() {
@@ -63,6 +76,9 @@ export function Hero() {
             <ButtonLink href="#experience" $variant="ghost">
               {h.seeWork}
             </ButtonLink>
+            <Button type="button" $variant="ghost" onClick={() => printResume(t.ui.resume.fileName)} title={h.downloadPdfHint}>
+              <DownloadIcon /> {h.downloadPdf}
+            </Button>
           </Ctas>
         </IntroCard>
 

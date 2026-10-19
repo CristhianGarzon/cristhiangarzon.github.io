@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Contact } from './components/Contact';
 import { Hero } from './components/Hero';
 import { Nav } from './components/Nav';
+import { PrintResume } from './components/PrintResume';
 import { Marquee } from './components/Marquee';
 import { About, Experience, Projects, Skills } from './components/Sections';
 import { profile } from './data';
@@ -37,6 +38,7 @@ export default function App() {
         <Muted>{t.ui.footer.builtWith}</Muted>
         <TextLink href="#top">{t.ui.nav.backToTop} ↑</TextLink>
       </Footer>
+      <PrintResume />
     </>
   );
 }

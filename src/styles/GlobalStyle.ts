@@ -1,6 +1,9 @@
 import { createGlobalStyle, css } from 'styled-components';
 import { color, ease, font, media, palettes, type Palette } from './theme';
 
+/** Width of the CV sidebar (components/PrintResume.tsx). */
+const RESUME_SIDEBAR = '70mm';
+
 const vars = (p: Palette) => css`
   --bg: ${p.bg};
   --surface: ${p.surface};
@@ -97,6 +100,28 @@ export const GlobalStyle = createGlobalStyle`
   .reveal:not(.is-visible) {
     opacity: 0;
     transform: translateY(18px);
+  }
+
+  /* Printing / "Save as PDF" shows only the CV (components/PrintResume.tsx), in the active theme's colours. */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  @media print {
+    /* Two-tone CV background (sidebar | main). A horizontal gradient repeats down every printed page. */
+    html,
+    body {
+      background: linear-gradient(90deg, ${color.surface2} 0 ${RESUME_SIDEBAR}, ${color.bg} ${RESUME_SIDEBAR} 100%) !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body::before {
+      display: none;
+    }
+    #root > *:not([data-print-root]) {
+      display: none !important;
+    }
   }
 
   ${media.reducedMotion} {
